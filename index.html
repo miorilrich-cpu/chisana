@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome to Sweetie Pastel Shop</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css?family=Mitr:wght@300;400;500;600&family=Comfortaa:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-pastel: #FFF5F7;
+  --pink-main: #FFB7C5;
+  --pink-dark: #FF85A1;
+  --cream-bg: #FFFDF9;
+  --brown-text: #5C4033;
+  --brown-light: #8C6D58;
+  --accent-yellow: #FFE599;
+  --accent-purple: #E2D4F9;
+}
+body {
+  font-family: 'Mitr', sans-serif;
+  background-color: var(--bg-pastel);
+  color: var(--brown-text);
+  background-image: radial-gradient(#FFD1DC 12%, transparent 12%), radial-gradient(#FFD1DC 12%, transparent 12%);
+  background-size: 24px 24px;
+  background-position: 0 0, 12px 12px;
+  overflow-x: hidden;
+}
+.font-cute {
+  font-family: 'Comfortaa', 'Mitr', cursive;
+}
+.frame-16-9 {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  max-width: 1380px;
+}
+@media (max-width: 1024px) {
+  .frame-16-9 {
+    aspect-ratio: auto;
+  }
+}
+.glass-card {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 2px solid rgba(255, 183, 197, 0.4);
+  border-radius: 28px;
+  box-shadow: 0 12px 36px rgba(255, 133, 161, 0.12);
+}
+.btn-pastel {
+  background: linear-gradient(135deg, #FFB7C5 0%, #FF85A1 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(255, 133, 161, 0.3);
+  transition: all 0.25s ease;
+}
+.btn-pastel:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 133, 161, 0.4);
+}
+.btn-secondary {
+  background-color: #FFF0F4;
+  color: var(--brown-text);
+  border: 1.5px solid var(--pink-main);
+  transition: all 0.2s ease;
+}
+.btn-secondary:hover {
+  background-color: var(--pink-main);
+  color: white;
+}
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FFF0F3;
+}
+::-webkit-scrollbar-thumb {
+  background: #FFB7C5;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FF85A1;
+}
+.pop-in {
+  animation: popIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+@keyframes popIn {
+  0% { opacity: 0; transform: scale(0.85); }
+  100% { opacity: 1; transform: scale(1); }
+}
+</style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-2 md:p-6 relative">
+ <!-- Welcome Screen Overlay -->
+ <div id="welcomeOverlay" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-pink-900/30 backdrop-blur-md transition-opacity duration-500">
+   <div class="glass-card p-8 sm:p-12 max-w-md w-full text-center pop-in relative overflow-hidden border-4 border-white">
+     <div class="mx-auto w-20 h-20 bg-pink-100 rounded-full flex items-center justify-center mb-5 text-pink-500 shadow-inner">
+       <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+         <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+       </svg>
+     </div>
+     <h1 id="welcomeTitle" class="font-cute text-2xl sm:text-3xl font-bold text-pink-600 mb-2">Welcome to my Store</h1>
+     <p id="welcomeSubtitle" class="text-xs sm:text-sm text-amber-900/70 mb-8 leading-relaxed">ยินดีต้อนรับสู่ร้านค้าพาสเทลแสนหวาน<br>กดปุ่มด้านล่างเพื่อเริ่มท่องโลกสินค้าสุดน่ารักกันเลยค่ะ</p>
+     <button onclick="enterSite()" class="btn-pastel w-full py-3.5 px-8 rounded-2xl font-semibold text-lg flex items-center justify-center gap-3 group">
+       <span>เข้าสู่ร้านค้า</span>
+       <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+       </svg>
+     </button>
+   </div>
+ </div>
+
+ <!-- 16:9 Main Application Container Frame -->
+ <div class="frame-16-9 glass-card flex flex-col overflow-hidden relative border-4 border-white/80 shadow-2xl my-auto">
+   <!-- Header / Navigation Bar -->
+   <header class="bg-white/80 backdrop-blur-md border-b border-pink-100 px-6 py-3.5 flex items-center justify-between shrink-0">
+     <div class="flex items-center gap-3">
+       <button onclick="toggleSidebar()" class="p-2 rounded-xl hover:bg-pink-50 transition lg:hidden text-pink-500">
+         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+         </svg>
+       </button>
+       <div class="flex items-center gap-3">
+         <img id="shopLogoImg" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="Logo" class="w-10 h-10 rounded-full object-cover border-2 border-pink-300 shadow-sm">
+         <div>
+           <h2 id="shopNameText" class="font-cute text-base sm:text-lg leading-tight font-bold text-pink-600">Sweetie Pastel Shop</h2>
+           <p id="shopDescText" class="text-xs text-amber-900/60 hidden sm:block">ร้านค้าของขวัญและของกระจุกกระจิกพาสเทล</p>
+         </div>
+       </div>
+     </div>
+     <!-- Search Bar & Top Actions -->
+     <div class="flex items-center gap-3">
+       <div class="relative hidden sm:block w-48 md:w-64">
+         <input type="text" id="searchInput" oninput="handleSearch()" placeholder="ค้นหาสินค้า..." class="w-full pl-9 pr-4 py-1.5 text-xs rounded-full bg-pink-50/70 border border-pink-200 focus:outline-none focus:border-pink-400 transition">
+         <svg class="w-4 h-4 text-pink-400 absolute left-3 top-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+         </svg>
+       </div>
+       <!-- Admin Modal Trigger Button -->
+       <button onclick="openAdminModal()" class="btn-secondary text-xs px-3.5 py-1.5 rounded-full font-medium flex items-center gap-1.5">
+         <svg class="w-4 h-4 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+         </svg>
+         <span>ระบบ Admin</span>
+       </button>
+       <!-- Cart Button -->
+       <button onclick="toggleCartModal()" class="relative p-2 rounded-full bg-pink-100 text-pink-600 hover:bg-pink-200 transition">
+         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+         </svg>
+         <span id="cartBadgeCount" class="absolute -top-1 -right-1 bg-pink-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
+       </button>
+     </div>
+   </header>
+
+   <!-- Main Content Area -->
+   <div class="flex-1 flex overflow-hidden relative">
+     <!-- Sidebar Navigation Categories -->
+     <aside id="sidebarDrawer" class="w-56 bg-white/60 backdrop-blur-md border-r border-pink-100 p-4 flex flex-col gap-2 shrink-0 absolute lg:relative z-20 h-full -translate-x-full lg:translate-x-0 transition-transform duration-300">
+       <div class="text-xs font-semibold text-pink-400 tracking-wider uppercase px-3 py-1 flex items-center justify-between">
+         <span>เมนูร้านค้า</span>
+         <svg class="w-3.5 h-3.5 text-pink-400" fill="currentColor" viewBox="0 0 24 24">
+           <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+         </svg>
+       </div>
+       <div id="categoryListContainer" class="flex flex-col gap-1.5">
+         <!-- Dynamic Categories Generated via JS -->
+       </div>
+     </aside>
+
+     <!-- Main Product Grid View / Dynamic Views -->
+     <main class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-6">
+       <!-- Store Banner Hero Box -->
+       <div id="bannerBox" class="relative rounded-2xl overflow-hidden h-36 sm:h-48 border border-pink-200/60 shadow-inner group">
+         <img id="shopBannerImg" src="https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1200&q=80" alt="Banner" class="w-full h-full object-cover">
+         <div class="absolute inset-0 bg-gradient-to-r from-pink-900/40 via-transparent to-transparent flex items-center p-6 sm:p-8">
+           <div class="text-white max-w-sm">
+             <span class="text-xs font-semibold bg-pink-400/80 px-3 py-1 rounded-full backdrop-blur-sm">PROMOTION</span>
+             <h3 class="font-cute text-xl sm:text-2xl font-bold mt-2">ลดพิเศษต้อนรับซีซันใหม่</h3>
+             <p class="text-xs opacity-90 mt-1">สินค้าพาสเทลน่ารักๆ ราคาพิเศษเฉพาะเดือนนี้เท่านั้น</p>
+           </div>
+         </div>
+       </div>
+
+       <!-- Category Header -->
+       <div class="flex items-center justify-between border-b border-pink-100 pb-3">
+         <div class="flex items-center gap-2">
+           <svg class="w-4 h-4 text-pink-400" fill="currentColor" viewBox="0 0 24 24">
+             <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+           </svg>
+           <h3 id="currentCategoryTitle" class="font-cute text-lg font-bold text-pink-600">สินค้าทั้งหมด</h3>
+         </div>
+         <div class="flex items-center gap-2">
+           <!-- ปุ่มกดรีวิวที่จะแสดงเฉพาะเมื่ออยู่หน้า รีวิวจากลูกค้า เท่านั้น -->
+           <button id="reviewActionBtn" onclick="openReviewModal()" class="btn-pastel text-xs px-3 py-1 rounded-full font-semibold hidden flex items-center gap-1 shadow-sm">
+             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+             <span>เขียนรีวิวของคุณ</span>
+           </button>
+           <span id="productCountBadge" class="text-xs text-amber-900/60 bg-pink-50 px-2.5 py-1 rounded-full border border-pink-200">0 รายการ</span>
+         </div>
+       </div>
+
+       <!-- Dynamic Display Area (Products / Contact / Reviews) -->
+       <div id="dynamicMainContainer">
+         <div id="productsGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+           <!-- Products dynamically rendered here -->
+         </div>
+       </div>
+     </main>
+   </div>
+ </div>
+
+ <!-- Admin Management Modal -->
+ <div id="adminModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm hidden">
+   <div class="glass-card max-w-3xl w-full max-h-[90vh] flex flex-col overflow-hidden pop-in border-4 border-white">
+     <div class="px-6 py-4 bg-white/90 border-b border-pink-100 flex items-center justify-between">
+       <div class="flex items-center gap-2 text-pink-600 font-cute font-bold text-lg">
+         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+         </svg>
+         <span>ระบบจัดการหลังร้าน (Admin Panel)</span>
+       </div>
+       <button onclick="closeAdminModal()" class="p-1.5 rounded-full text-gray-400 hover:bg-pink-100 hover:text-pink-600 transition">
+         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+         </svg>
+       </button>
+     </div>
+     <div class="flex border-b border-pink-100 bg-pink-50/50 text-xs sm:text-sm">
+       <button onclick="switchAdminTab('info')" id="tabBtnInfo" class="flex-1 py-3 font-semibold text-pink-600 border-b-2 border-pink-500 bg-white">ข้อมูลร้านค้า & รูปภาพ</button>
+       <button onclick="switchAdminTab('products')" id="tabBtnProducts" class="flex-1 py-3 font-semibold text-gray-500 hover:text-pink-600">เพิ่ม/จัดการสินค้า</button>
+     </div>
+     <div class="p-6 overflow-y-auto flex-1 space-y-6">
+       <div id="adminTabInfo" class="space-y-4">
+         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+           <div>
+             <label class="block text-xs font-semibold text-amber-900/80 mb-1">ชื่อร้านค้า</label>
+             <input type="text" id="adminInputShopName" class="w-full px-3 py-2 text-xs rounded-xl bg-pink-50/40 border border-pink-200 focus:outline-none focus:border-pink-400">
+           </div>
+           <div>
+             <label class="block text-xs font-semibold text-amber-900/80 mb-1">ข้อความต้อนรับป๊อปอัพ</label>
+             <input type="text" id="adminInputWelcomeTitle" class="w-full px-3 py-2 text-xs rounded-xl bg-pink-50/40 border border-pink-200 focus:outline-none focus:border-pink-400">
+           </div>
+         </div>
+         <div>
+           <label class="block text-xs font-semibold text-amber-900/80 mb-1">คำอธิบายย่อของร้านค้า</label>
+           <input type="text" id="adminInputShopDesc" class="w-full px-3 py-2 text-xs rounded-xl bg-pink-50/40 border border-pink-200 focus:outline-none focus:border-pink-400">
+         </div>
+         <hr class="border-pink-100">
+         <div class="text-xs font-bold text-pink-500 flex items-center gap-1">
+           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+           <span>จัดการ URL รูปภาพในเว็บไซต์</span>
+         </div>
+         <div class="space-y-3 text-xs">
+           <div>
+             <label class="block font-medium text-amber-900/80 mb-1">URL รูปภาพโลโก้ร้าน</label>
+             <input type="text" id="adminInputLogoUrl" class="w-full px-3 py-2 rounded-xl bg-pink-50/40 border border-pink-200 focus:outline-none focus:border-pink-400">
+           </div>
+           <div>
+             <label class="block font-medium text-amber-900/80 mb-1">URL รูปภาพแบนเนอร์ส่วนหัว</label>
+             <input type="text" id="adminInputBannerUrl" class="w-full px-3 py-2 rounded-xl bg-pink-50/40 border border-pink-200 focus:outline-none focus:border-pink-400">
+           </div>
+         </div>
+         <button onclick="saveShopSettings()" class="btn-pastel w-full py-2.5 rounded-xl text-xs font-semibold mt-4">บันทึกข้อมูลร้านค้า</button>
+       </div>
+       <div id="adminTabProducts" class="space-y-6 hidden">
+         <div class="bg-pink-50/60 p-4 rounded-2xl border border-pink-200/80 space-y-3">
+           <div id="adminProductFormTitle" class="text-xs font-bold text-pink-600">เพิ่มรายการสินค้าใหม่</div>
+           <input type="hidden" id="adminProductId">
+           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+             <input type="text" id="adminProdName" placeholder="ชื่อสินค้า..." class="px-3 py-2 rounded-xl border border-pink-200 focus:outline-none">
+             <input type="number" id="adminProdPrice" placeholder="ราคาสินค้า (บาท)..." class="px-3 py-2 rounded-xl border border-pink-200 focus:outline-none">
+             <select id="adminProdCategory" class="px-3 py-2 rounded-xl border border-pink-200 focus:outline-none bg-white">
+               <option value="เครื่องเขียน">เครื่องเขียน</option>
+               <option value="สกินแคร์">สกินแคร์</option>
+               <option value="ของแต่งห้อง">ของแต่งห้อง</option>
+               <option value="ขนม">ขนม</option>
+             </select>
+             <input type="text" id="adminProdImgUrl" placeholder="URL รูปภาพสินค้า..." class="px-3 py-2 rounded-xl border border-pink-200 focus:outline-none">
+           </div>
+           <div class="flex gap-2">
+             <button onclick="saveProduct()" class="btn-pastel flex-1 py-2 rounded-xl text-xs font-semibold">บันทึกสินค้า</button>
+             <button onclick="resetProductForm()" class="px-4 py-2 rounded-xl text-xs bg-gray-200 text-gray-700 hover:bg-gray-300">ยกเลิก</button>
+           </div>
+         </div>
+         <div>
+           <div class="text-xs font-bold text-amber-900/80 mb-3">รายการสินค้าที่มีอยู่</div>
+           <div class="max-h-60 overflow-y-auto pr-1">
+             <div id="adminProductList" class="space-y-2"></div>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
+
+ <!-- Cart Modal -->
+ <div id="cartModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm hidden">
+   <div class="glass-card max-w-md w-full p-6 pop-in border-4 border-white flex flex-col max-h-[80vh]">
+     <div class="flex items-center justify-between border-b border-pink-100 pb-3">
+       <div class="flex items-center gap-2">
+         <svg class="w-5 h-5 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+         </svg>
+         <h3 class="font-cute text-lg font-bold text-pink-600">ตะกร้าสินค้าของคุณ</h3>
+       </div>
+       <button onclick="toggleCartModal()" class="text-gray-400 hover:text-pink-500">
+         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+         </svg>
+       </button>
+     </div>
+     <div id="cartItemsContainer" class="flex-1 overflow-y-auto py-4 space-y-3"></div>
+     <div class="border-t border-pink-100 pt-4 mt-auto">
+       <div class="flex justify-between text-sm font-bold mb-4">
+         <span>ราคารวมทั้งหมด</span>
+         <span id="cartTotalPrice" class="text-pink-600">0 ฿</span>
+       </div>
+       <button onclick="checkout()" class="btn-pastel w-full py-3 rounded-2xl font-semibold text-sm">สั่งซื้อสินค้า</button>
+     </div>
+   </div>
+ </div>
+
+ <!-- Review Input Modal -->
+ <div id="reviewModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm hidden">
+   <div class="glass-card max-w-md w-full p-6 pop-in border-4 border-white flex flex-col">
+     <div class="flex items-center justify-between border-b border-pink-100 pb-3 mb-4">
+       <h3 class="font-cute text-lg font-bold text-pink-600">เขียนรีวิวความประทับใจ</h3>
+       <button onclick="toggleReviewModal()" class="text-gray-400 hover:text-pink-500">
+         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+       </button>
+     </div>
+     <div class="space-y-3 text-xs">
+       <div>
+         <label class="block font-semibold text-amber-900/80 mb-1">ชื่อผู้รีวิว</label>
+         <input type="text" id="reviewAuthor" placeholder="ชื่อของคุณ..." class="w-full px-3 py-2 rounded-xl border border-pink-200 focus:outline-none">
+       </div>
+       <div>
+         <label class="block font-semibold text-amber-900/80 mb-1">ข้อความรีวิว</label>
+         <textarea id="reviewText" rows="3" placeholder="สินค้ามีความน่ารักมาก ส่งไวทันใจ..." class="w-full px-3 py-2 rounded-xl border border-pink-200 focus:outline-none"></textarea>
+       </div>
+       <button onclick="submitReview()" class="btn-pastel w-full py-2.5 rounded-xl font-semibold text-xs mt-2">ส่งรีวิว</button>
+     </div>
+   </div>
+ </div>
+
+ <script>
+ let storeData = {
+   name: "Sweetie Pastel Shop",
+   welcomeTitle: "Welcome to my Store",
+   description: "ร้านค้าของขวัญและของกระจุกกระจิกพาสเทล",
+   logoUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80",
+   bannerUrl: "https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1200&q=80"
+ };
+ 
+ let categories = ["ทั้งหมด", "เครื่องเขียน", "สกินแคร์", "ของแต่งห้อง", "ขนม", "รีวิวจากลูกค้า", "ช่องทางการติดต่อ"];
+ let currentCategory = "ทั้งหมด";
+ 
+ let products = [
+   { id: 1, name: "สมุดโน้ตพาสเทล A5", price: 89, category: "เครื่องเขียน", image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=500&q=80" },
+   { id: 2, name: "เซตปากกาไฮไลต์ 6 สี", price: 120, category: "เครื่องเขียน", image: "https://images.unsplash.com/photo-1585336261026-675768e719f1?auto=format&fit=crop&w=500&q=80" },
+   { id: 3, name: "ลิปบาล์มกลิ่นสตรอเบอร์รี่", price: 159, category: "สกินแคร์", image: "https://images.unsplash.com/photo-1625093742435-6fa192b6fb10?auto=format&fit=crop&w=500&q=80" },
+   { id: 4, name: "โคมไฟตั้งโต๊ะมินิแบบชาร์จ", price: 290, category: "ของแต่งห้อง", image: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=500&q=80" },
+   { id: 5, name: "เทียนหอมอโรมาทรงเค้ก", price: 199, category: "ของแต่งห้อง", image: "https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=500&q=80" },
+   { id: 6, name: "มาการองเซ็ต 6 ชิ้น", price: 250, category: "ขนม", image: "https://images.unsplash.com/photo-1569864358642-9d1684040f43?auto=format&fit=crop&w=500&q=80" }
+ ];
+
+ let reviews = [
+   { author: "คุณมายด์", text: "ร้านค้าน่ารักมาก สินค้าตรงปก จัดส่งรวดเร็วทันใจค่ะ ♡" },
+   { author: "คุณฟ้าใส", text: "แพ็กเกจจิ้งพาสเทลสวยงามประทับใจสุดๆ ไว้มาอุดหนุนอีกแน่นอนค่ะ" }
+ ];
+
+ let cart = [];
+
+ function enterSite() {
+   const overlay = document.getElementById('welcomeOverlay');
+   overlay.classList.add('opacity-0');
+   setTimeout(() => {
+     overlay.classList.add('hidden');
+   }, 500);
+ }
+
+ function renderCategories() {
+   const container = document.getElementById('categoryListContainer');
+   container.innerHTML = categories.map(cat => `
+     <button onclick="selectCategory('${cat}')" class="w-full text-left px-3.5 py-2 rounded-xl text-xs font-medium transition flex items-center justify-between ${currentCategory === cat ? 'bg-pink-400 text-white shadow-sm font-semibold' : 'text-amber-900/70 hover:bg-pink-100/60'}">
+       <span>${cat}</span>
+       ${currentCategory === cat ? '<svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>' : ''}
+     </button>
+   `).join('');
+ }
+
+ function selectCategory(cat) {
+   currentCategory = cat;
+   document.getElementById('currentCategoryTitle').textContent = cat === "ทั้งหมด" ? "สินค้าทั้งหมด" : cat;
+   
+   // จัดการแสดงปุ่มรีวิวเฉพาะเมื่อเลือกหน้า "รีวิวจากลูกค้า"
+   const reviewBtn = document.getElementById('reviewActionBtn');
+   if (cat === "รีวิวจากลูกค้า") {
+     reviewBtn.classList.remove('hidden');
+   } else {
+     reviewBtn.classList.add('hidden');
+   }
+
+   renderCategories();
+   renderMainContent();
+   if (window.innerWidth < 1024) {
+     toggleSidebar();
+   }
+ }
+
+ function toggleSidebar() {
+   const sidebar = document.getElementById('sidebarDrawer');
+   sidebar.classList.toggle('-translate-x-full');
+ }
+
+ function renderMainContent(searchQuery = "") {
+   const container = document.getElementById('dynamicMainContainer');
+   const countBadge = document.getElementById('productCountBadge');
+
+   if (currentCategory === "ช่องทางการติดต่อ") {
+     countBadge.textContent = "3 ช่องทาง";
+     container.innerHTML = `
+       <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+         <a href="https://line.me" target="_blank" class="glass-card p-6 rounded-2xl flex flex-col items-center text-center hover:shadow-lg transition group bg-white/70">
+           <div class="w-14 h-14 bg-green-100 text-green-500 rounded-full flex items-center justify-center text-2xl mb-3 shadow-inner group-hover:scale-110 transition">💚</div>
+           <h4 class="font-cute font-bold text-sm text-amber-950 mb-1">LINE Official</h4>
+           <p class="text-xs text-amber-900/60 mb-3">@sweetiepastel</p>
+           <span class="text-xs bg-green-500 text-white px-3.5 py-1.5 rounded-full font-medium">เพิ่มเพื่อน</span>
+         </a>
+         <a href="https://facebook.com" target="_blank" class="glass-card p-6 rounded-2xl flex flex-col items-center text-center hover:shadow-lg transition group bg-white/70">
+           <div class="w-14 h-14 bg-blue-100 text-blue-500 rounded-full flex items-center justify-center text-2xl mb-3 shadow-inner group-hover:scale-110 transition">💙</div>
+           <h4 class="font-cute font-bold text-sm text-amber-950 mb-1">Facebook Fanpage</h4>
+           <p class="text-xs text-amber-900/60 mb-3">Sweetie Pastel Shop</p>
+           <span class="text-xs bg-blue-500 text-white px-3.5 py-1.5 rounded-full font-medium">ไปที่เพจ</span>
+         </a>
+         <a href="https://instagram.com" target="_blank" class="glass-card p-6 rounded-2xl flex flex-col items-center text-center hover:shadow-lg transition group bg-white/70">
+           <div class="w-14 h-14 bg-pink-100 text-pink-500 rounded-full flex items-center justify-center text-2xl mb-3 shadow-inner group-hover:scale-110 transition">💖</div>
+           <h4 class="font-cute font-bold text-sm text-amber-950 mb-1">Instagram</h4>
+           <p class="text-xs text-amber-900/60 mb-3">@sweetie.pastel</p>
+           <span class="text-xs bg-pink-500 text-white px-3.5 py-1.5 rounded-full font-medium">ติดตามไอจี</span>
+         </a>
+       </div>
+     `;
+     return;
+   }
+
+   if (currentCategory === "รีวิวจากลูกค้า") {
+     countBadge.textContent = `${reviews.length} รีวิว`;
+     container.innerHTML = `
+       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+         ${reviews.map(r => `
+           <div class="glass-card p-4 rounded-2xl bg-white/80 space-y-2 border border-pink-100 shadow-sm">
+             <div class="flex items-center justify-between">
+               <span class="font-cute font-bold text-xs text-pink-600">${r.author}</span>
+               <span class="text-yellow-400 text-xs">★★★★★</span>
+             </div>
+             <p class="text-xs text-amber-950/80 leading-relaxed">${r.text}</p>
+           </div>
+         `).join('')}
+       </div>
+     `;
+     return;
+   }
+
+   // แสดงรายการสินค้าตามหมวดหมู่ปกติ
+   let filtered = products;
+   if (currentCategory !== "ทั้งหมด") {
+     filtered = filtered.filter(p => p.category === currentCategory);
+   }
+   if (searchQuery.trim() !== "") {
+     filtered = filtered.filter(p => p.name.toLowerCase().includes(searchQuery.toLowerCase()));
+   }
+
+   countBadge.textContent = `${filtered.length} รายการ`;
+   if (filtered.length === 0) {
+     container.innerHTML = `<div class="col-span-full py-12 text-center text-amber-900/50 text-xs">ไม่พบสินค้าในรายการค่ะ</div>`;
+     return;
+   }
+
+   container.innerHTML = `
+     <div id="productsGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+       ${filtered.map(product => `
+         <div class="bg-white rounded-2xl p-3 border border-pink-100 shadow-sm hover:shadow-md transition flex flex-col justify-between group">
+           <div class="space-y-2">
+             <div class="aspect-square rounded-xl overflow-hidden bg-pink-50 relative">
+               <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" onerror="this.src='https://placehold.co/400x400/FFF0F3/FF85A1?text=No+Image'">
+             </div>
+             <div class="text-[10px] text-pink-500 font-semibold px-2 py-0.5 bg-pink-50 rounded-full inline-block">${product.category}</div>
+             <h4 class="font-medium text-xs text-amber-950 line-clamp-2">${product.name}</h4>
+           </div>
+           <div class="mt-3 flex items-center justify-between pt-2 border-t border-pink-50">
+             <span class="font-bold text-sm text-pink-600">${product.price} ฿</span>
+             <button onclick="addToCart(${product.id})" class="p-1.5 rounded-xl bg-pink-100 text-pink-600 hover:bg-pink-400 hover:text-white transition">
+               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+               </svg>
+             </button>
+           </div>
+         </div>
+       `).join('')}
+     </div>
+   `;
+ }
+
+ function handleSearch() {
+   const query = document.getElementById('searchInput').value;
+   renderMainContent(query);
+ }
+
+ function addToCart(productId) {
+   const product = products.find(p => p.id === productId);
+   const exist = cart.find(item => item.id === productId);
+   if (exist) {
+     exist.qty += 1;
+   } else {
+     cart.push({ ...product, qty: 1 });
+   }
+   updateCartUI();
+   showNotification("เพิ่มสินค้าลงตะกร้าแล้วค่ะ 🛒");
+ }
+
+ function updateCartUI() {
+   const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+   const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+   document.getElementById('cartBadgeCount').textContent = totalQty;
+   document.getElementById('cartTotalPrice').textContent = `${totalPrice} ฿`;
+   
+   const container = document.getElementById('cartItemsContainer');
+   if (cart.length === 0) {
+     container.innerHTML = `<div class="text-center py-8 text-xs text-amber-900/50">ไม่มีสินค้าในตะกร้า</div>`;
+     return;
+   }
+   container.innerHTML = cart.map(item => `
+     <div class="flex items-center justify-between bg-pink-50/50 p-2.5 rounded-xl border border-pink-100 text-xs">
+       <div class="flex items-center gap-2">
+         <img src="${item.image}" class="w-10 h-10 rounded-lg object-cover">
+         <div>
+           <div class="font-medium text-amber-950">${item.name}</div>
+           <div class="text-pink-600 font-bold">${item.price} ฿ x ${item.qty}</div>
+         </div>
+       </div>
+       <div class="flex items-center gap-1">
+         <button onclick="changeQty(${item.id}, -1)" class="w-6 h-6 rounded-md bg-white text-pink-600 border border-pink-200 font-bold">-</button>
+         <span class="w-4 text-center font-bold">${item.qty}</span>
+         <button onclick="changeQty(${item.id}, 1)" class="w-6 h-6 rounded-md bg-white text-pink-600 border border-pink-200 font-bold">+</button>
+       </div>
+     </div>
+   `).join('');
+ }
+
+ function changeQty(id, delta) {
+   const item = cart.find(i => i.id === id);
+   if (!item) return;
+   item.qty += delta;
+   if (item.qty <= 0) {
+     cart = cart.filter(i => i.id !== id);
+   }
+   updateCartUI();
+ }
+
+ function toggleCartModal() {
+   document.getElementById('cartModal').classList.toggle('hidden');
+ }
+
+ function toggleReviewModal() {
+   document.getElementById('reviewModal').classList.toggle('hidden');
+ }
+
+ function openReviewModal() {
+   document.getElementById('reviewAuthor').value = "";
+   document.getElementById('reviewText').value = "";
+   toggleReviewModal();
+ }
+
+ function submitReview() {
+   const author = document.getElementById('reviewAuthor').value;
+   const text = document.getElementById('reviewText').value;
+   if (!author || !text) {
+     showNotification("กรุณากรอกชื่อและข้อความรีวิวให้ครบถ้วนค่ะ");
+     return;
+   }
+   reviews.unshift({ author, text });
+   toggleReviewModal();
+   renderMainContent();
+   showNotification("ขอบคุณสำหรับรีวิวของคุณค่ะ! 💖");
+ }
+
+ function checkout() {
+   if (cart.length === 0) return;
+   showNotification("สั่งซื้อสินค้าเรียบร้อยแล้วค่ะ! ขอบคุณที่อุดหนุนนะคะ");
+   cart = [];
+   updateCartUI();
+   toggleCartModal();
+ }
+
+ function openAdminModal() {
+   document.getElementById('adminModal').classList.remove('hidden');
+   document.getElementById('adminInputShopName').value = storeData.name;
+   document.getElementById('adminInputWelcomeTitle').value = storeData.welcomeTitle;
+   document.getElementById('adminInputShopDesc').value = storeData.description;
+   document.getElementById('adminInputLogoUrl').value = storeData.logoUrl;
+   document.getElementById('adminInputBannerUrl').value = storeData.bannerUrl;
+   renderAdminProductsList();
+ }
+
+ function closeAdminModal() {
+   document.getElementById('adminModal').classList.add('hidden');
+ }
+
+ function switchAdminTab(tab) {
+   const tabInfo = document.getElementById('adminTabInfo');
+   const tabProducts = document.getElementById('adminTabProducts');
+   const btnInfo = document.getElementById('tabBtnInfo');
+   const btnProducts = document.getElementById('tabBtnProducts');
+   if (tab === 'info') {
+     tabInfo.classList.remove('hidden');
+     tabProducts.classList.add('hidden');
+     btnInfo.className = "flex-1 py-3 font-semibold text-pink-600 border-b-2 border-pink-500 bg-white";
+     btnProducts.className = "flex-1 py-3 font-semibold text-gray-500 hover:text-pink-600";
+   } else {
+     tabInfo.classList.add('hidden');
+     tabProducts.classList.remove('hidden');
+     btnProducts.className = "flex-1 py-3 font-semibold text-pink-600 border-b-2 border-pink-500 bg-white";
+     btnInfo.className = "flex-1 py-3 font-semibold text-gray-500 hover:text-pink-600";
+   }
+ }
+
+ function saveShopSettings() {
+   storeData.name = document.getElementById('adminInputShopName').value;
+   storeData.welcomeTitle = document.getElementById('adminInputWelcomeTitle').value;
+   storeData.description = document.getElementById('adminInputShopDesc').value;
+   storeData.logoUrl = document.getElementById('adminInputLogoUrl').value;
+   storeData.bannerUrl = document.getElementById('adminInputBannerUrl').value;
+   document.getElementById('shopNameText').textContent = storeData.name;
+   document.getElementById('welcomeTitle').textContent = storeData.welcomeTitle;
+   document.getElementById('shopDescText').textContent = storeData.description;
+   document.getElementById('shopLogoImg').src = storeData.logoUrl;
+   document.getElementById('shopBannerImg').src = storeData.bannerUrl;
+   showNotification("บันทึกการตั้งค่าร้านค้าสำเร็จ!");
+   closeAdminModal();
+ }
+
+ function saveProduct() {
+   const id = document.getElementById('adminProductId').value;
+   const name = document.getElementById('adminProdName').value;
+   const price = parseFloat(document.getElementById('adminProdPrice').value);
+   const category = document.getElementById('adminProdCategory').value;
+   const image = document.getElementById('adminProdImgUrl').value || "https://placehold.co/400x400/FFF0F3/FF85A1?text=No+Image";
+   if (!name || isNaN(price)) {
+     showNotification("กรุณากรอกข้อมูลสินค้าให้ครบถ้วนค่ะ");
+     return;
+   }
+   if (id) {
+     const prod = products.find(p => p.id === parseInt(id));
+     if (prod) {
+       prod.name = name;
+       prod.price = price;
+       prod.category = category;
+       prod.image = image;
+     }
+   } else {
+     const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
+     products.push({ id: newId, name, price, category, image });
+   }
+   resetProductForm();
+   renderAdminProductsList();
+   renderMainContent();
+   showNotification("บันทึกสินค้าเรียบร้อยค่ะ");
+ }
+
+ function resetProductForm() {
+   document.getElementById('adminProductFormTitle').textContent = "เพิ่มรายการสินค้าใหม่";
+   document.getElementById('adminProductId').value = "";
+   document.getElementById('adminProdName').value = "";
+   document.getElementById('adminProdPrice').value = "";
+   document.getElementById('adminProdImgUrl').value = "";
+ }
+
+ function renderAdminProductsList() {
+   const container = document.getElementById('adminProductList');
+   container.innerHTML = products.map(p => `
+     <div class="flex items-center justify-between p-2 rounded-xl bg-white border border-pink-100 text-xs">
+       <div class="flex items-center gap-2">
+         <img src="${p.image}" class="w-8 h-8 rounded-lg object-cover">
+         <div>
+           <div class="font-bold text-amber-950">${p.name}</div>
+           <div class="text-pink-500">${p.price} ฿ (${p.category})</div>
+         </div>
+       </div>
+       <div class="flex gap-1">
+         <button onclick="editProduct(${p.id})" class="px-2 py-1 rounded-lg bg-pink-100 text-pink-600 hover:bg-pink-200">แก้ไข</button>
+         <button onclick="deleteProduct(${p.id})" class="px-2 py-1 rounded-lg bg-red-100 text-red-600 hover:bg-red-200">ลบ</button>
+       </div>
+     </div>
+   `).join('');
+ }
+
+ function editProduct(id) {
+   const prod = products.find(p => p.id === id);
+   if (!prod) return;
+   document.getElementById('adminProductFormTitle').textContent = "แก้ไขรายการสินค้า";
+   document.getElementById('adminProductId').value = prod.id;
+   document.getElementById('adminProdName').value = prod.name;
+   document.getElementById('adminProdPrice').value = prod.price;
+   document.getElementById('adminProdCategory').value = prod.category;
+   document.getElementById('adminProdImgUrl').value = prod.image;
+ }
+
+ function deleteProduct(id) {
+   products = products.filter(p => p.id !== id);
+   cart = cart.filter(c => c.id !== id);
+   updateCartUI();
+   renderAdminProductsList();
+   renderMainContent();
+   showNotification("ลบรายการสินค้าแล้วค่ะ");
+ }
+
+ function showNotification(msg) {
+   const toast = document.createElement('div');
+   toast.className = 'fixed bottom-5 right-5 bg-pink-600 text-white px-5 py-3 rounded-2xl shadow-lg z-50 text-xs font-semibold pop-in flex items-center gap-2';
+   toast.innerHTML = `<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg><span>${msg}</span>`;
+   document.body.appendChild(toast);
+   setTimeout(() => toast.remove(), 3000);
+ }
+
+ window.onload = function() {
+   renderCategories();
+   renderMainContent();
+   updateCartUI();
+ };
+ </script>
+</body>
+</html>
